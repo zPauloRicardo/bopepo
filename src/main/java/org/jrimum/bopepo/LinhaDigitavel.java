@@ -263,7 +263,7 @@ public class LinhaDigitavel extends BlockOfFields {
 	/**
 	 * Escreve a linha digitável foramatada (com espaço entre os campos).
 	 * 
-	 * @see org.jrimum.texgit.type.component.BlockOfFields#write()
+	 * @see BlockOfFields#write()
 	 */
 	@Override
 	public String write(){
@@ -323,7 +323,7 @@ public class LinhaDigitavel extends BlockOfFields {
 		 * </p>
 		 * 
 		 * 
-		 * @see org.jrimum.texgit.type.component.BlockOfFields#write()
+		 * @see BlockOfFields#write()
 		 */
 		@Override
 		public String write(){

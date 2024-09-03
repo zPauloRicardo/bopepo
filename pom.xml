@@ -74,35 +74,12 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>animal-sniffer-maven-plugin</artifactId>
-				<version>1.6</version>
-				<configuration>
-					<signature>
-						<groupId>org.codehaus.mojo.signature</groupId>
-						<artifactId>java15</artifactId>
-						<version>1.0</version>
-					</signature>
-				</configuration>
-				<executions>
-					<execution>
-						<id>animal-sniffer</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/jrimum-bopepo-with-dependencies.xml</descriptor>
-                        <descriptor>src/main/assembly/jrimum-bopepo-with-dependencies-src.xml</descriptor>
-                        <descriptor>src/main/assembly/jrimum-bopepo-examples.xml</descriptor>
-                    </descriptors>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
 				</configuration>
 				<executions>
 					<execution>
@@ -143,26 +120,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadoc</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				 <configuration>
-			        <charset>UTF-8</charset>
-					<docencoding>UTF-8</docencoding>
-					<docfilessubdirs>true</docfilessubdirs>
-					<show>private</show>
-		    	</configuration>
-			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -173,16 +131,7 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>jrimum-domkee</artifactId>
-			<version>0.2.3-DEV-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>jrimum-texgit</artifactId>
-			<version>0.2.3-DEV-SNAPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
@@ -239,27 +188,37 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>mail</artifactId>
+					<groupId>javax.mail</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jms</artifactId>
+					<groupId>javax.jms</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxtools</artifactId>
+					<groupId>com.sun.jdmk</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jmxri</artifactId>
+					<groupId>com.sun.jmx</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jrimum.org</id>
-			<url>http://jrimum.org/maven/content/groups/public/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>org.jrimum.snapshots</id>
-			<url>http://jrimum.org/maven/content/repositories/org.jrimum.snapshots/</url>
-		</snapshotRepository>
-		<repository>
-			<id>org.jrimum.releases</id>
-			<url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
-		</repository>
-	</distributionManagement>
+
 	
 </project>
